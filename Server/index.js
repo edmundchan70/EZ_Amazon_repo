@@ -44,7 +44,7 @@ app.post("/Product" ,async (req,res) => {
   }catch(err){
    // console.log(err)
   }})
-  
+
 app.put("/Product" ,async (req, res) =>{
   try{
       const {selectedImage , title , price , instock , id }  = req.body;
@@ -137,6 +137,7 @@ app.get("/User/:email",async(req , res)=> {
     const findUser = await pool.query (
       `SELECT * FROM CUSTOMER WHERE email='${email}'`, [] 
     );
+  
     res.send(findUser.rows);
   }catch(err){
     console.log(err)

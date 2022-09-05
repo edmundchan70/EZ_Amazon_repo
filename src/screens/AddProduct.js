@@ -5,7 +5,7 @@ import "./css/AddProduct.css"
 const server = "http://localhost:3002"
 function AddProduct() {
     const [user , setUser] = useContext(UserNameContext)
-
+ 
     const [product_data , setProduct_data] = useState({
         sellerName:"",
         selectedImage:null ,
