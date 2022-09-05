@@ -1,0 +1,30 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+ 
+.add_product_content{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+ 
+input{
+    display: table;
+}
+.product_name{
+    margin-top: 100px;
+
+}
+.seller_name{
+    margin-bottom: 10px;
+}
+.choice_pic{
+    max-height: 200px;
+    width:100%;
+    object-fit:contain;
+    margin-bottom: 15px;    
+}
+.add_product > h5{
+    font-size: 10px;
+}
