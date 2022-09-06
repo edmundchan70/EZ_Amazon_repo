@@ -44,7 +44,6 @@ app.post("/Product" ,async (req,res) => {
   }catch(err){
    // console.log(err)
   }})
-
 app.put("/Product" ,async (req, res) =>{
   try{
       const {selectedImage , title , price , instock , id }  = req.body;
@@ -67,7 +66,7 @@ app.get("/Product/getProductById/:id",async (req,res) => {
   }catch(err){
     console.log(err)
   }
-}) 
+})  
 app.get("/Product/getAll" ,async (req,res) => {
   try{
     const resp =  await pool.query("SELECT * FROM PRODUCT");
@@ -101,7 +100,7 @@ app.get("/User/clear_shoppingCart/:email" ,async(req,res)=>{
    console.log(email)
     const clear_cart=  await pool.query(
         `update CUSTOMER set basket_product_id=null where email='${email}'`,[])
-   console.log("resp: ",  clear_cart)
+   console.log("resp: completed")
         res.send("Clear shopping cart ")
   }catch(err){
     console.log(err)
@@ -128,7 +127,6 @@ app.post("/User" ,async(req , res)=> {
     console.log(err);
   }
 })
-
 app.get("/User/:email",async(req , res)=> {  
   try{
     

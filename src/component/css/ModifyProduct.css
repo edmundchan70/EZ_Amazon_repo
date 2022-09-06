@@ -1,23 +1,22 @@
 *{
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
 }
 form{
     display: block;
 }
 
 .pop-up{
-    position:sticky;
-    z-index: 100;
-    background-color: whitesmoke;
-    width: 100%;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    border: 1px solid white;
-    padding: 20px;
-    align-items: center;
+      position:sticky;
+      z-index: 100;
+      background-color: whitesmoke;
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      border-radius: 5px;
+      border: 1px solid white;
+      padding: 20px;
+      align-items: center;
 }
 .product_image{
     max-height: 200px;
@@ -73,6 +72,11 @@ button :before {
 .display_image > p5 >  img{
    object-fit: cover;
 }
- .price{
-    margin-left: 20px;
+ 
+ .pop-up > img{
+  max-height: 50px;
+  max-width: 100%;
  }
+.price{
+  margin-right: 100px;
+}

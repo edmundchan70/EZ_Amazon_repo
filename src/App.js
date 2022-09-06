@@ -9,12 +9,13 @@
  export const UserNameContext = React.createContext();
  function App() {
   const [user , setUser] = useState({});
+   
   return (
     
     <UserNameContext.Provider value={[user,setUser]}>
     <Router>
           <div className="app">
-          <Header />
+          <Header    />
             <Routes>
               <Route path="/login" element={<><Login /> </>}/>
               <Route path="/" element={<>   <Home /> </>} /> 

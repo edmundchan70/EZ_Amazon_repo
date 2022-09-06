@@ -46,13 +46,13 @@ function ModifyProduct( {title,image,price ,instock ,id , setModify}) {
      
       
         <p5 className="price">Price: 
-        <input type="text" placeholder={price} onChange={(e) => setProduct_data(
+        </p5>
+        <input type="text" className="price_input"placeholder={price} onChange={(e) => setProduct_data(
           prevState => ({
               ...prevState , 
               price:e.target.value})
         )}/>
         
-        </p5>
         <p5 className="instock">Instock : 
         <input type="text" placeholder={instock} onChange={(e) => setProduct_data(
           prevState => ({

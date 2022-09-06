@@ -13,6 +13,7 @@ function AddProduct() {
         price:null, 
         instock:null 
     })
+
     const handleSubmit =  ()=>{
      
         console.log(product_data)
@@ -80,17 +81,15 @@ function AddProduct() {
                 (prevState => ({    
                     ...prevState,
                     instock:e.target.value})))}} /> </h5>
-             
            
-               
+            
             <br />
             <br />
             <button onClick={handleSubmit}>Submit</button>
-
+                    <></>
             </div>
             </div>
         )
-    
 }
 
 export default AddProduct

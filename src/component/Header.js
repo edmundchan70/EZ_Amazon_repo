@@ -9,11 +9,12 @@ import Axios from 'axios';
 import { isEmpty } from '@firebase/util';
 import {UserNameContext} from "../App"
 const server = "http://localhost:3002"
-function Header() {     
+function Header({ReloadFunc , reLoad}) {     
                 const [count , setCount] =useState(0);
                 const [user ,setUser] = useContext(UserNameContext);
                 const [load , setLoad]= useState(false);
                 const [input ,setInput ]= useState("");
+                const func = ()=>ReloadFunc(false);
                 onAuthStateChanged(auth, (currentUser) => {
                     setUser(currentUser);
                     setLoad(true);}) 
@@ -39,21 +40,18 @@ function Header() {
                         const result= Axios.get(server + "/User/"+email).then(
                             (resp)=>{
                             const bracket_collection = resp.data[0].basket_product_id;
-                            
                             if(bracket_collection != null)
                                  {  
                               
                                   count= bracket_collection.length
                                 }
-                            return count}) .then (value => setCount(value))
-                    
-                           
-                 }
-                        
+                            return count}) .then (value => setCount(value))}    
                     else
                         alert("USER NOT FOUND")
-                       
                     };
+useEffect(()=>{
+get_shopCart_num();
+} )
                 if(load){
                     get_shopCart_num()
                     return (
@@ -85,7 +83,7 @@ function Header() {
                                     <span className="header_options_line_1">YOUR</span>
                                     <span className="header_options_line_2">PRIME</span>
                                 </div>
-                            <Link to={!user ? "/Login" : "/Checkout"} state={{email: user.email}}>
+                            <Link to={!user ? "/Login" : "/Checkout"} state={{func: func} }>
                             <div className="header_options" onClick={CheckLogin}>
                                     <ShoppingBasketIcon  className='header_optionBasket' />
   
@@ -95,11 +93,10 @@ function Header() {
 
                             <Link to={"/AddProduct" }>
                             <div className="header_options" onClick={CheckLogin} >
-
-
                             </div>
                             </Link>
                         </div>
+                        
                     </div>
                 )}
                 else{
