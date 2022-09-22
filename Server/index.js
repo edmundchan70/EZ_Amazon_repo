@@ -2,16 +2,11 @@ const fetch = require('node-fetch');
 const express = require('express')
 const app = express();
 const cors = require('cors');
-const path = require('path');
+ 
 const ports = 3002;
 const Pool = require('pg').Pool
 const data = require('./config');
-const { async } = require('@firebase/util');
-const { TrySharp, Upload } = require('@mui/icons-material');
-const fs =require('fs')
-const oldPath = path.join("~/","Desktop/")
-const multer = require('multer');
-const picPath = path.join(__dirname.substring(0,__dirname.lastIndexOf('/')+1) ,"src" ,"component" ,"public/")
+const { popoverClasses } = require('@mui/material');
  
  
 app.use(cors());
@@ -41,6 +36,7 @@ app.post("/Product" ,async (req,res) => {
         [selectedImage , productName , price ,instock,sellerName]
     ); 
     console.log("Product created")
+    res.send("CREATED")
   }catch(err){
    // console.log(err)
   }})
@@ -83,7 +79,7 @@ try{
       "Delete from product where id=$1" , [id]
     )
     console.log(result)
-    req.send("SUCCESS")
+    res.send("SUCCESS")
 }catch(err){
   console.log(err);
 }
@@ -93,6 +89,58 @@ app.delete("/Product/all" ,async(req,res) =>{
   "Delete from PRODUCT"
  )
  res.send(resp)
+})
+app.get("/Product/Minus_Inventory/:id",async(req,res) =>{
+  try{
+    const {id} = req.params ;
+   
+    const  resp = await pool.query("SELECT  instock  FROM  PRODUCT WHERE id=$1",[id]) 
+    const data = resp.rows;
+ 
+    const {instock} = data[0];
+    
+    if(instock <1)
+      res.send("error");
+    else {
+      const newInstock= instock - 1 ; 
+      //  `update CUSTOMER set basket_product_id=null where email='${email}'`,[])
+      const resp = await pool.query("Update product set instock=$1 where id=$2",[newInstock,id]) ;
+      res.send(resp.command);
+    }
+
+  
+  }catch(err){
+    console.log(err);
+  }
+
+  })
+
+//User 
+
+app.get("/User/paid/:email" ,async (req, res) =>{
+try{
+  /*
+  1.read [id] , 
+  2. go to product
+  3.invenory -1 
+  */
+  const {email}   = req.params ; 
+  console.log(email); 
+  const resp = await pool.query(`Select  basket_product_id from Customer  where email='${email}' `, [])
+  console.log(resp.rows);  
+  const  {basket_product_id} = resp.rows[0];
+  console.log(basket_product_id);
+  basket_product_id.map(
+    (item, i )=>{
+      console.log(item);
+
+    }
+  )
+  
+  
+}catch(err) {
+  console.log(err)
+}
 })
 app.get("/User/clear_shoppingCart/:email" ,async(req,res)=>{
   try{
@@ -106,7 +154,7 @@ app.get("/User/clear_shoppingCart/:email" ,async(req,res)=>{
     console.log(err)
   }
 })
-//User 
+
 app.post("/User" ,async(req , res)=> {
   try{
     const  {email , password, superUser} = req.body; 
@@ -161,6 +209,7 @@ app.post("/User/addToCart" ,async(req , res)=> {
     console.log(err)
   }
 })
+
 
 
  

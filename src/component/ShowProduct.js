@@ -20,22 +20,24 @@ useEffect( ()=>{
 } , [])
   return (
     <div className="home_row">
-        <div>
+       <div className="displayProducts">
             {ProductInfo.map((item,i) => {
             console.log(item)
             return (
-                <Product 
+
+                    <Product className="showProduct"
                 id={item.id}
                 image={item.image_url}
                 instock={item.instock}
                 price={item.price}
                 seller={item.seller}
                 title={item.title}
-                />)
- }
-        )}</div>
+                />
+       
+              )}
+        )}          
+        </div>
     </div>
   )
 }
-
 export default ShowProduct

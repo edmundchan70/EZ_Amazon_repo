@@ -47,7 +47,7 @@ function Header({ReloadFunc , reLoad}) {
                                 }
                             return count}) .then (value => setCount(value))}    
                     else
-                        alert("USER NOT FOUND")
+                        console.log("USER NOT FOUND")
                     };
 useEffect(()=>{
 get_shopCart_num();

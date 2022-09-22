@@ -11,15 +11,16 @@ function Product({id, title , image , price , rating ,instock}) {
   const [user ,setUser] = useContext(UserNameContext);
   const [modify , setModify]= useState(false);
   const [IMG ,setIMG] = useState(null);
-  function importAll(r) {
-    return r.keys().map(r);
-  }
+  const [login , setLogin] = useState(true);
+  
   const helper_setModify = ()=>{
     setModify(!modify)
   }
-   
+
   const addToBasket = () =>{
+    //check login 
     const email = user.email;
+    
     const respond =  Axios({
       method:'post', 
       url: server + "/User/addToCart" ,
@@ -31,16 +32,17 @@ function Product({id, title , image , price , rating ,instock}) {
       (res)=>{
         if(res.status==200){
           console.log(res)
-          
         }
       }
     )
   }
- 
- 
+ if(!login){
+    alert("PLEASE LOG IN ") 
+    setLogin(true);
+    console.log(login)
+ }
  if(modify)
     return (
-
       <div  className="modify-product">
  {console.log(id)}
             <ModifyProduct 
@@ -58,27 +60,29 @@ function Product({id, title , image , price , rating ,instock}) {
     <div className="product">
           <FcMenu onClick={ ()=>
             setModify(true)
-
           }/>
-            <div className="product_info">
-                <p>{title}</p>
-                <small>$</small>
-                <strong>{price}</strong>
+            <div className="product_wrapper">
+               <div className="productInfo">      <p>{title}</p>   </div>
+               <div className="productInfo">     <small>$</small>    <strong>{price}</strong>  </div>
+              
+             
      
-                <div className="product_rating">
+                <div className="productInfo">
                     {Array(rating)
                     .fill()
                     .map( () => (
                         <p>⭐</p>))}
                 </div>
-                <div className='instock'>
+                <div className='productInfo'>
                 <strong>INSTOCK: {instock}</strong>
                 </div>
             </div>
      
            
            <img src={(image)} alt="Product Image" /> 
-            <button onClick={addToBasket}>ADD to busket </button>
+            <button onClick={user ?  addToBasket() : ()=>{
+              setLogin(false);
+            }}>ADD to busket </button>
            
     </div>
   )

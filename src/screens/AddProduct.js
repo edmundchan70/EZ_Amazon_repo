@@ -2,10 +2,12 @@ import React  , {useContext, useEffect, useState}from 'react'
 import {UserNameContext} from "../App"
 import Axios from 'axios'
 import "./css/AddProduct.css"
+import { useNavigate } from 'react-router-dom'
 const server = "http://localhost:3002"
 function AddProduct() {
     const [user , setUser] = useContext(UserNameContext)
- 
+    const [redirect , setRedirect]  = useState(false);
+    const nav = useNavigate();
     const [product_data , setProduct_data] = useState({
         sellerName:"",
         selectedImage:null ,
@@ -15,17 +17,20 @@ function AddProduct() {
     })
 
     const handleSubmit =  ()=>{
-     
         console.log(product_data)
      Axios({
         method:'POST' , 
         url: server+ "/Product", 
         data:{
-           product_data}}).then(
-            resp =>{
+           product_data}})
+        .then(
+            (resp) =>{
                 console.log(resp);
+                setRedirect(true)
             }
            )  }
+
+     if(!redirect)
         return (
             <div className="add-product">
                 
@@ -59,19 +64,13 @@ function AddProduct() {
                     )}    
                 
                     <div>
-                   <p5>Picture URL :  <input type="text" onChange={(e)=>{setProduct_data(prevState=>({
-                        ...prevState,
-                        selectedImage:e.target.value 
-                    }))}}/></p5>
-                
                  </div>
-                 
-               
-             
-                    
-    
                   </div>
 
+                  <h5>Picture URL :<input type="text" onChange={(e)=>{setProduct_data(prevState=>({
+                        ...prevState,
+                        selectedImage:e.target.value 
+                    }))}}/></h5>
                <h5>PRICE : $  <input type="text"  value={product_data.price}  onChange={(e) => {setProduct_data (
                 (prevState => ({    
                     ...prevState,
@@ -90,6 +89,10 @@ function AddProduct() {
             </div>
             </div>
         )
+     else{
+        console.log("YES")
+        nav("/")
+        }
 }
 
 export default AddProduct

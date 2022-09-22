@@ -6,7 +6,6 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from "fireba
 
 function Login() {
 const naviage = useNavigate();
-
 const [email , setEmail] = useState('')
 const [password  , setPassword] = useState('')
 const submit = async (e) =>{
@@ -26,16 +25,17 @@ const register = async (e) => {
     try{
         const user = await createUserWithEmailAndPassword(auth , email , password);
         console.log(user);
-        
         }catch(err){
         alert(err.message)
     }
 }
   return (
     <div className="Login">
-        <Link to="/" >
-         <img className="Login_logo" src={require("./public/amazon_PNG12.png")} />
-         </Link>
+        {console.log("RENDER")}
+       
+         <img className="Login_logo" src={require("./public/amazon_PNG12.png")}
+         onClick={()=> naviage("/")} />
+     
         <div className="Login_container" >
             <h1>Sign-in</h1>
             <h5>Email</h5>
