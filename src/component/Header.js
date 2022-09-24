@@ -42,16 +42,16 @@ function Header({ReloadFunc , reLoad}) {
                             const bracket_collection = resp.data[0].basket_product_id;
                             if(bracket_collection != null)
                                  {  
-                              
                                   count= bracket_collection.length
                                 }
                             return count}) .then (value => setCount(value))}    
                     else
                         console.log("USER NOT FOUND")
                     };
-useEffect(()=>{
-get_shopCart_num();
-} )
+useEffect(
+get_shopCart_num
+
+)
                 if(load){
                     get_shopCart_num()
                     return (

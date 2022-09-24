@@ -94,7 +94,10 @@ function CheckOut() {
     )
     return cost 
   }
+
+  //non-tidy first => tidied 
   if(!homePage){
+
     if((Object.keys(displayCart).length)==0){
       return(
     

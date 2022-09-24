@@ -20,6 +20,7 @@ useEffect( ()=>{
 } , [])
   return (
     <div className="home_row">
+      {console.log("PRODUCT INFO LENGTH : " , ProductInfo.length)}
        <div className="displayProducts">
             {ProductInfo.map((item,i) => {
             console.log(item)

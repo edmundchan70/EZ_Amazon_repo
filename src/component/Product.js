@@ -17,10 +17,12 @@ function Product({id, title , image , price , rating ,instock}) {
     setModify(!modify)
   }
 
-  const addToBasket = () =>{
+  const addToBasket = (e) =>{
     //check login 
+    
     const email = user.email;
     
+  if(e){  console.log("added : " , id);
     const respond =  Axios({
       method:'post', 
       url: server + "/User/addToCart" ,
@@ -34,7 +36,9 @@ function Product({id, title , image , price , rating ,instock}) {
           console.log(res)
         }
       }
-    )
+    )}else{
+      console.log("pageRender");
+    }
   }
  if(!login){
     alert("PLEASE LOG IN ") 
@@ -52,6 +56,7 @@ function Product({id, title , image , price , rating ,instock}) {
         instock={instock} 
         image={image} 
         setModify={helper_setModify}/>
+        
       </div>
     
     )
@@ -80,9 +85,12 @@ function Product({id, title , image , price , rating ,instock}) {
      
            
            <img src={(image)} alt="Product Image" /> 
-            <button onClick={user ?  addToBasket() : ()=>{
-              setLogin(false);
-            }}>ADD to busket </button>
+            <button onClick={(e) =>{
+              e.preventDefault();
+              user ?  addToBasket(e) :setLogin(false);
+            }
+              
+             }>ADD to busket </button>
            
     </div>
   )

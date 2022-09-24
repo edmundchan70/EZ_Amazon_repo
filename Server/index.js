@@ -2,6 +2,7 @@ const fetch = require('node-fetch');
 const express = require('express')
 const app = express();
 const cors = require('cors');
+const Axios = require('axios');
  
 const ports = 3002;
 const Pool = require('pg').Pool
@@ -90,9 +91,10 @@ app.delete("/Product/all" ,async(req,res) =>{
  )
  res.send(resp)
 })
-app.get("/Product/Minus_Inventory/:id",async(req,res) =>{
+app.get("/Product/Minus_Inventory/:id/:number",async(req,res) =>{
   try{
     const {id} = req.params ;
+    const {number} = req.params;
    
     const  resp = await pool.query("SELECT  instock  FROM  PRODUCT WHERE id=$1",[id]) 
     const data = resp.rows;
@@ -102,7 +104,7 @@ app.get("/Product/Minus_Inventory/:id",async(req,res) =>{
     if(instock <1)
       res.send("error");
     else {
-      const newInstock= instock - 1 ; 
+      const newInstock= instock - number ; 
       //  `update CUSTOMER set basket_product_id=null where email='${email}'`,[])
       const resp = await pool.query("Update product set instock=$1 where id=$2",[newInstock,id]) ;
       res.send(resp.command);
@@ -119,23 +121,34 @@ app.get("/Product/Minus_Inventory/:id",async(req,res) =>{
 
 app.get("/User/paid/:email" ,async (req, res) =>{
 try{
+  const {email } = req.params;
   /*
-  1.read [id] , 
-  2. go to product
-  3.invenory -1 
+  1. read email 
+  2. get basket_product_id
+  3.create obj for basket_product_id
   */
-  const {email}   = req.params ; 
+ 
   console.log(email); 
   const resp = await pool.query(`Select  basket_product_id from Customer  where email='${email}' `, [])
   console.log(resp.rows);  
   const  {basket_product_id} = resp.rows[0];
   console.log(basket_product_id);
+  let tempObj = {}; 
   basket_product_id.map(
-    (item, i )=>{
-      console.log(item);
-
-    }
+     (item ,i ) => {
+      //contain key , add 1 
+      //else , add key set 
+      if(Object.keys(tempObj).includes(item)){
+          tempObj[item] = 1 ; 
+      }else{
+        tempObj[item] +=1 ; 
+      }
+     }
+    
   )
+  console.log(tempObj);
+
+
   
   
 }catch(err) {
