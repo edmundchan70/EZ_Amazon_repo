@@ -8,15 +8,10 @@ Some inforation about this project
  
 ### Front End part 
     The design of the webpage is based on the typical amazon webpage.  
- 
- Markup : 1. A numbered list
-              1. A nested numbered list
-              2. Which is numbered
-          2. Which is numbered
-    User would be able to : 1. login/create account 
-                            2. Add/delete items 
-                            3. modify existing items
-                            4. "Buy" the items inside the shopping cart
+ User would be able to : * login/create account 
+                            * Add/delete items 
+                            * modify existing items
+                            * "Buy" the items inside the shopping cart
     <br />
 
     
