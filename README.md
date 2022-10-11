@@ -6,7 +6,7 @@ Some inforation about this project
  This is a full stack webpage , where React.js is used for front-end development , node.js for back-end server , and postgresql for database .
  <br />
  
- ### Front End part 
+### Front End part 
     The design of the webpage is based on the typical amazon webpage.  
 <br /> 
     User would be able to :
@@ -14,8 +14,10 @@ Some inforation about this project
                             2. Add/delete items 
                             3. modify existing items
                             4. "Buy" the items inside the shopping cart
-    <br/>
-  ### Back End part 
+    <br />
+
+    
+ ### Back End part 
     The backend part is mainly developed by node.js.
     Mostly RESTFUL apis for different purposes(add/delete items , add icons ....)
   
