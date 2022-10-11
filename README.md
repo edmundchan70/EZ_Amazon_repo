@@ -7,7 +7,7 @@ Some inforation about this project
  <br />
  
 ### Front End part 
-    The design of the webpage is based on the typical amazon webpage.  
+The design of the webpage is based on the typical amazon webpage.  
  User would be able to : * login/create account 
                             * Add/delete items 
                             * modify existing items
