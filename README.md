@@ -8,7 +8,7 @@ Some inforation about this project
  
 ### Front End part 
     The design of the webpage is based on the typical amazon webpage.  
-<br /> 
+ 
  Markup : 1. A numbered list
               1. A nested numbered list
               2. Which is numbered
