@@ -4,19 +4,20 @@ import Product from "../component/Product";
 import {UserNameContext} from "../App"
 import ShowProduct from "../component/ShowProduct"
 
-function Home() {
+function Home({clicked,setClicked}) {
     const [load , setLoad] = useState(false);
     const [user ,setUser] = useContext(UserNameContext);
- 
+    const [click , setClick] = useState(clicked);
     useEffect(
       ()=> {
         if(user)
            setLoad(true);
-      } ,[]
+        setClicked(!clicked);
+      } ,[click]
     )
+    
     if(load)
         return (
-          
         <div className="Home">
          
 
@@ -26,7 +27,7 @@ function Home() {
                    </div>
               
                   <div className='home_row'>
-                      <ShowProduct />
+                      <ShowProduct changeFunc={setClick} value={click}/>
                   </div> 
                   
               </div>

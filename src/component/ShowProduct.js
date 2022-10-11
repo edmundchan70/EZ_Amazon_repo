@@ -14,7 +14,9 @@ function ShowProduct() {
            const data = resp.data ;
            data.map((item, i )=>{
             SetProduct_Info((prev)=> [...prev  ,item])})})}
-
+    const test  = ()=>{
+      console.log(ProductInfo.length)
+    }
 useEffect( ()=>{
     retreieveData();
 } , [])
@@ -25,7 +27,6 @@ useEffect( ()=>{
             {ProductInfo.map((item,i) => {
             console.log(item)
             return (
-
                     <Product className="showProduct"
                 id={item.id}
                 image={item.image_url}
@@ -38,6 +39,7 @@ useEffect( ()=>{
               )}
         )}          
         </div>
+ 
     </div>
   )
 }

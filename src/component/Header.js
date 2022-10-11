@@ -9,11 +9,12 @@ import Axios from 'axios';
 import { isEmpty } from '@firebase/util';
 import {UserNameContext} from "../App"
 const server = "http://localhost:3002"
-function Header({ReloadFunc , reLoad}) {     
+function Header({ReloadFunc , reLoad ,buttonClicked}) {     
                 const [count , setCount] =useState(0);
                 const [user ,setUser] = useContext(UserNameContext);
                 const [load , setLoad]= useState(false);
                 const [input ,setInput ]= useState("");
+                
                 const func = ()=>ReloadFunc(false);
                 onAuthStateChanged(auth, (currentUser) => {
                     setUser(currentUser);

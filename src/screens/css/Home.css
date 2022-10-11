@@ -2,6 +2,14 @@
     margin: 0;
     padding: 0;
 }
+.Home{
+    background: linear-gradient(
+45deg,   
+#7EE8FA
+,
+#EEC0C6
+)   ;
+}
 .home_row{
     display:flex; 
     z-index:1;

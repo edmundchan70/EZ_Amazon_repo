@@ -90,8 +90,11 @@ function CheckOut() {
     cart.map(
       (item, i )=>{
              cost += item.price
+             console.log(item.price)
+            
       }
     )
+    console.log(cost)
     return cost 
   }
 

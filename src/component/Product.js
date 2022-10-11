@@ -47,8 +47,8 @@ function Product({id, title , image , price , rating ,instock}) {
  }
  if(modify)
     return (
-      <div  className="modify-product">
- {console.log(id)}
+      <div  className="product">
+       
             <ModifyProduct 
         id={id} 
         title={title} 

@@ -18,7 +18,6 @@ function ModifyProduct( {title,image,price ,instock ,id , setModify}) {
     const result=  Axios({
     method: 'delete' ,
     url:server + "/Product/"+id ,
- 
   }).then(
     (resp) =>{
      console.log(resp);
