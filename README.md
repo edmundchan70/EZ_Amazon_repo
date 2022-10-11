@@ -17,13 +17,13 @@ User would be able to :
     <br />
 
     
- ### Back End part 
+### Back End part 
     The backend part is mainly developed by node.js.
     Mostly RESTFUL apis for different purposes(add/delete items , add icons ....)
   
  
  ### NOTE
- This is just for demo purposes , the site is probably not gonna work on other machine since the postgre server is hosted on my own machine. Please contact me if you really interested in it.
+ This is just for demo purposes , the site is probably not gonna work on other machine since the postgre server is hosted on my own machine. Please contact me if you really interested in it.Email: edmundchan70@gmail.com
  
 ### `npm start`
 
