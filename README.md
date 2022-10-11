@@ -9,8 +9,7 @@ Some inforation about this project
 ### Front End part 
     The design of the webpage is based on the typical amazon webpage.  
 <br /> 
-    User would be able to :
-                            1. login/create account 
+    User would be able to : 1. login/create account 
                             2. Add/delete items 
                             3. modify existing items
                             4. "Buy" the items inside the shopping cart
