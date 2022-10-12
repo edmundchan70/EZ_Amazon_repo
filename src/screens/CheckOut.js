@@ -50,15 +50,24 @@ function CheckOut() {
    ,[user]
   )
   const Pay = ()=>{
+
+
+    Axios({
+      method:"GET" , 
+      url:server + "/User/paid/"+email 
+    }).then(resp =>{
+      console.log(resp.data);
       Axios({
         method:"GET"  ,
         url: server +"/User/clear_shoppingCart/"+email 
       }) .then(resp =>{
 
-        console.log(resp.data)
+   
  
         setHomePage(true);
-      })
+      });
+    })
+   
       
   }
   const tidyUp= ()=>{
@@ -162,12 +171,14 @@ function CheckOut() {
           }
             <p5>Total Cost : {checkCost()}  </p5>
             <button onClick={Pay} > Pay </button>
+           
           </div>
        </div>
       )
     }
 
   }
+
  
   else{
  

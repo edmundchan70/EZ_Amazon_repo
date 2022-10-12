@@ -88,6 +88,9 @@ function Product({id, title , image , price , rating ,instock}) {
             <button onClick={(e) =>{
               e.preventDefault();
               user ?  addToBasket(e) :setLogin(false);
+              return (
+                alert("You have successfully added this product to your shopping cart")
+              )
             }
               
              }>ADD to busket </button>

@@ -95,12 +95,11 @@ app.get("/Product/Minus_Inventory/:id/:number",async(req,res) =>{
   try{
     const {id} = req.params ;
     const {number} = req.params;
-   
     const  resp = await pool.query("SELECT  instock  FROM  PRODUCT WHERE id=$1",[id]) 
     const data = resp.rows;
- 
-    const {instock} = data[0];
     
+    const {instock} = data[0];
+    console.log(instock)
     if(instock <1)
       res.send("error");
     else {
@@ -118,7 +117,7 @@ app.get("/Product/Minus_Inventory/:id/:number",async(req,res) =>{
   })
 
 //User 
-
+ 
 app.get("/User/paid/:email" ,async (req, res) =>{
 try{
   const {email } = req.params;
@@ -138,16 +137,24 @@ try{
      (item ,i ) => {
       //contain key , add 1 
       //else , add key set 
-      if(Object.keys(tempObj).includes(item)){
-          tempObj[item] = 1 ; 
-      }else{
+      if(Object.keys(tempObj).includes(''+item)){
         tempObj[item] +=1 ; 
+      }else{
+        tempObj[item] = 1 ; 
       }
      }
     
   )
   console.log(tempObj);
-
+  const keys = Object.keys(tempObj); 
+  keys.map(
+    async (key,i) => {
+      console.log(key);
+      console.log(tempObj[key]);
+      const resp = await pool.query(`Update product set instock = instock - ${tempObj[key]} where id=${key}` );
+    }
+  )
+  res.send(resp);
 
   
   
