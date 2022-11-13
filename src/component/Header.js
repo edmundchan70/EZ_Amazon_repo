@@ -7,10 +7,11 @@ import {auth} from "../screens/Firebase"
 import {onAuthStateChanged , signOut} from "firebase/auth"
 import Axios from 'axios';
 import { isEmpty } from '@firebase/util';
+import { CountContext } from '../App';
 import {UserNameContext} from "../App"
 const server = "http://localhost:3002"
 function Header({ReloadFunc , reLoad ,buttonClicked}) {     
-                const [count , setCount] =useState(0);
+                const [count , setCount] =useContext(CountContext);
                 const [user ,setUser] = useContext(UserNameContext);
                 const [load , setLoad]= useState(false);
                 const [input ,setInput ]= useState("");

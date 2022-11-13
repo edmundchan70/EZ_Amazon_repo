@@ -9,7 +9,7 @@ const naviage = useNavigate();
 const [email , setEmail] = useState('')
 const [password  , setPassword] = useState('')
 const submit = async (e) =>{
-    e.preventDefault()
+    e.preventDefault();
     try{
         const user = await signInWithEmailAndPassword(auth , email , password);
         if(auth){
@@ -17,9 +17,7 @@ const submit = async (e) =>{
         }
         console.log(user);
         }catch(err){
-        alert(err.message)
-    }
-}
+        alert(err.message)}}
 const register = async (e) => {
     e.preventDefault()
     try{
@@ -27,8 +25,7 @@ const register = async (e) => {
         console.log(user);
         }catch(err){
         alert(err.message)
-    }
-}
+    }}
   return (
     <div className="Login">
         {console.log("RENDER")}

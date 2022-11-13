@@ -5,13 +5,16 @@ import Axios from "axios"
 import {Link} from "react-router-dom"
 import {FcMenu} from "react-icons/fc"
 import ModifyProduct from './ModifyProduct'
+import { CountContext } from '../App'
 import PopUp from "./ModifyProduct"
 const server = "http://localhost:3002";
 function Product({id, title , image , price , rating ,instock}) {  
   const [user ,setUser] = useContext(UserNameContext);
+  const [count , setCount ] = useContext(CountContext);
   const [modify , setModify]= useState(false);
   const [IMG ,setIMG] = useState(null);
   const [login , setLogin] = useState(true);
+
   
   const helper_setModify = ()=>{
     setModify(!modify)
@@ -33,7 +36,10 @@ function Product({id, title , image , price , rating ,instock}) {
     }).then(
       (res)=>{
         if(res.status==200){
-          console.log(res)
+          console.log(res);
+          setCount(
+            prev => prev+1 
+          )
         }
       }
     )}else{

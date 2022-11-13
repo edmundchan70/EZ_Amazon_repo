@@ -7,25 +7,29 @@
  import AddProduct from "./screens/AddProduct" ; 
  import ModifyProduct  from './component/ModifyProduct';
  export const UserNameContext = React.createContext();
+ export const CountContext = React.createContext();
  function App() {
   const [user , setUser] = useState({});
-   const [click , setClick] = useState(true);
-  
+  const [count,setCount]= useState(0);
+ 
   return (
     <UserNameContext.Provider value={[user,setUser]}>
-    <Router>
-          <div className="app">
-          <Header  />
-            <Routes>
-              <Route path="/login" element={<>       <Login /> </>}/>
-              <Route path="/" element={<>       <Home clicked={click} setClicked={setClick}/> </>} /> 
-              <Route path="/addProduct" element={<>          <AddProduct /> </>} />
-              <Route path="/Checkout" element={<>         <Checkout /> </>}/>
-              <Route path="/ModifyProduct" element={<>        <Header /> <ModifyProduct /> </>} />
-            </Routes>
-          </div>
+      <CountContext.Provider value={[count,setCount]} >
+        <Router>
+            <div className="app">
+            <Header  />
+              <Routes>
+                <Route path="/login" element={<>       <Login /> </>}/>
+                <Route path="/" element={<>       <Home /> </>} /> 
+                <Route path="/addProduct" element={<>          <AddProduct /> </>} />
+                <Route path="/Checkout" element={<>         <Checkout /> </>}/>
+                <Route path="/ModifyProduct" element={<>        <Header /> <ModifyProduct /> </>} />
+              </Routes>
+            </div>
 
-      </Router>
+        </Router>
+      </CountContext.Provider>
+  
 
     </UserNameContext.Provider>
   
