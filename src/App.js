@@ -29,8 +29,9 @@
 
         </Router>
       </CountContext.Provider>
-  
-
+        <button onClick={()=>{
+          console.log(user);
+        }}>CLICK ME </button>
     </UserNameContext.Provider>
   
   );

@@ -99,7 +99,7 @@ function Product({id, title , image , price , rating ,instock}) {
               )
             }
               
-             }>ADD to busket </button>
+             }>ADD to basket </button>
            
     </div>
   )
