@@ -16,10 +16,11 @@ const server = data.Server;
 
 const pool = new Pool({
   user: 'edmundchan70',
-  host: 'localhost',
-  database: 'edmundchan',
-  password:"233233123Lol",
-  port: 5431,
+    host: 'db.bit.io',
+    database: 'edmundchan70/online-shop', // public database 
+    password: 'v2_3x9QE_mejNavfitcwbPYczfyv6mWf', // key from bit.io database page connect menu
+    port: 5432,
+    ssl: true,
 });
 app.listen(ports , ()=>{
   console.log('listening on port ' + ports);
